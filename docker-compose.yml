@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+    # auto saves any update to docker
+      - ./app:/app 
+    command: >
+      sh -c "python manage.py runserer 0.0.0.0:8000"
+
+
+
+
+
