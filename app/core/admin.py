@@ -10,21 +10,21 @@ class UserAdmin(BaseUserAdmin):
     list_display = ['email', 'name']
 
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name',)}),
-        (
-            _('Permissions'),
+        (None, {'fields': ('email', 'password')}),  # sec1
+        (_('Personal Info'), {'fields': ('name',)}),  # sec2 ..etc below
+        (_('Permissions'),
             {
                 'fields': (
                     'is_active',
                     'is_staff',
                     'is_superuser',
                 )
-            }
+        }
         ),
         (_('Important dates'), {'fields': ('last_login',)}),
     )
 
+    # admin can create new user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),

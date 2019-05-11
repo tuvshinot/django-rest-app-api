@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-    PermissionsMixin
+                                       PermissionsMixin
 
 
 class UserManager(BaseUserManager):
@@ -10,8 +10,8 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
         user = self.model(email=self.normalize_email(email), **extra_field)
-        user.set_password(password)
-        user.save(using=self._db)
+        user.set_password(password) # user this method cuz passwords needs to be encrypted
+        user.save(using=self._db) # supporting multiple db postgre sqlite etc
 
         return user
 

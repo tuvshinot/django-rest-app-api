@@ -5,13 +5,13 @@ from django.urls import reverse
 
 class AdminSiteTests(TestCase):
 
-    def setUp(self):
-        self.client = Client()
+    def setUp(self): # runs before everytests, setup
+        self.client = Client() # client that makes request or uses webpage
         self.admin_user = get_user_model().objects.create_superuser(
             email='admin@londonappdev.com',
             password='password123'
         )
-        self.client.force_login(self.admin_user)
+        self.client.force_login(self.admin_user) # client logins in as admin user
         self.user = get_user_model().objects.create_user(
             'test@londonappdev.com',
             'test123'
@@ -19,7 +19,7 @@ class AdminSiteTests(TestCase):
 
     def test_users_listed(self):
         """ Test that users are listed on user page  """
-        url = reverse('admin:core_user_changelist')
+        url = reverse('admin:core_user_changelist') # admin fields those links in django doc, app - admin - name of url
         res = self.client.get(url)
 
         self.assertContains(res, self.user.name)
